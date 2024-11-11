@@ -1,4 +1,4 @@
-#ifndef ADAPTIVE_CACHE_HPP
+п»ї#ifndef ADAPTIVE_CACHE_HPP
 #define ADAPTIVE_CACHE_HPP
 
 #include "LRU_Cache.hpp"
@@ -10,58 +10,58 @@ namespace CacheLibrary {
 
     /**
      * @class AdaptiveCache
-     * @brief Адаптивний кеш, який перемикається між алгоритмами LRU та MRU залежно від дисперсії доступу.
+     * @brief РђРґР°РїС‚РёРІРЅРёР№ РєРµС€, СЏРєРёР№ РїРµСЂРµРјРёРєР°С”С‚СЊСЃСЏ РјС–Р¶ Р°Р»РіРѕСЂРёС‚РјР°РјРё LRU С‚Р° MRU Р·Р°Р»РµР¶РЅРѕ РІС–Рґ РґРёСЃРїРµСЂСЃС–С— РґРѕСЃС‚СѓРїСѓ.
      */
     class AdaptiveCache {
     public:
         /**
-         * @brief Конструктор для ініціалізації адаптивного кешу.
+         * @brief РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РґР»СЏ С–РЅС–С†С–Р°Р»С–Р·Р°С†С–С— Р°РґР°РїС‚РёРІРЅРѕРіРѕ РєРµС€Сѓ.
          */
         AdaptiveCache();
 
         /**
-         * @brief Доступ до ключа з адаптивним вибором алгоритму кешування.
-         * @param key Ключ для доступу.
+         * @brief Р”РѕСЃС‚СѓРї РґРѕ РєР»СЋС‡Р° Р· Р°РґР°РїС‚РёРІРЅРёРј РІРёР±РѕСЂРѕРј Р°Р»РіРѕСЂРёС‚РјСѓ РєРµС€СѓРІР°РЅРЅСЏ.
+         * @param key РљР»СЋС‡ РґР»СЏ РґРѕСЃС‚СѓРїСѓ.
          */
         void access(int key);
 
         /**
-         * @brief Архівування ключа на основі частоти доступу.
-         * @param key Ключ для архівування.
+         * @brief РђСЂС…С–РІСѓРІР°РЅРЅСЏ РєР»СЋС‡Р° РЅР° РѕСЃРЅРѕРІС– С‡Р°СЃС‚РѕС‚Рё РґРѕСЃС‚СѓРїСѓ.
+         * @param key РљР»СЋС‡ РґР»СЏ Р°СЂС…С–РІСѓРІР°РЅРЅСЏ.
          */
         void archive(int key);
 
         /**
-         * @brief Розрахунок дисперсій доступу для LRU та MRU.
+         * @brief Р РѕР·СЂР°С…СѓРЅРѕРє РґРёСЃРїРµСЂСЃС–Р№ РґРѕСЃС‚СѓРїСѓ РґР»СЏ LRU С‚Р° MRU.
          */
         void calculate_dispersions();
 
         /**
-         * @brief Виведення поточного статусу кешу.
+         * @brief Р’РёРІРµРґРµРЅРЅСЏ РїРѕС‚РѕС‡РЅРѕРіРѕ СЃС‚Р°С‚СѓСЃСѓ РєРµС€Сѓ.
          */
         void display_cache_status() const;
 
     private:
-        LRU_Cache lruCache; ///< Об'єкт кешу LRU.
-        MRU_Cache mruCache; ///< Об'єкт кешу MRU.
-        float dispersionLRU, dispersionMRU; ///< Дисперсії для LRU та MRU.
-        std::unordered_map<int, int> accessFrequency; ///< Частота доступу до кожного ключа.
-        std::unordered_map<int, double> insertionTime; ///< Час вставки для кожного ключа.
-        const double alpha = 0.5; ///< Коефіцієнт згладжування для розрахунків частоти.
-        const std::string archiveFilePath = "archive.txt"; ///< Шлях до файлу архіву.
-        std::string lastAlgorithm; ///< Останній використаний алгоритм кешування.
+        LRU_Cache lruCache; ///< РћР±'С”РєС‚ РєРµС€Сѓ LRU.
+        MRU_Cache mruCache; ///< РћР±'С”РєС‚ РєРµС€Сѓ MRU.
+        float dispersionLRU, dispersionMRU; ///< Р”РёСЃРїРµСЂСЃС–С— РґР»СЏ LRU С‚Р° MRU.
+        std::unordered_map<int, int> accessFrequency; ///< Р§Р°СЃС‚РѕС‚Р° РґРѕСЃС‚СѓРїСѓ РґРѕ РєРѕР¶РЅРѕРіРѕ РєР»СЋС‡Р°.
+        std::unordered_map<int, double> insertionTime; ///< Р§Р°СЃ РІСЃС‚Р°РІРєРё РґР»СЏ РєРѕР¶РЅРѕРіРѕ РєР»СЋС‡Р°.
+        const double alpha = 0.5; ///< РљРѕРµС„С–С†С–С”РЅС‚ Р·РіР»Р°РґР¶СѓРІР°РЅРЅСЏ РґР»СЏ СЂРѕР·СЂР°С…СѓРЅРєС–РІ С‡Р°СЃС‚РѕС‚Рё.
+        const std::string archiveFilePath = "archive.txt"; ///< РЁР»СЏС… РґРѕ С„Р°Р№Р»Сѓ Р°СЂС…С–РІСѓ.
+        std::string lastAlgorithm; ///< РћСЃС‚Р°РЅРЅС–Р№ РІРёРєРѕСЂРёСЃС‚Р°РЅРёР№ Р°Р»РіРѕСЂРёС‚Рј РєРµС€СѓРІР°РЅРЅСЏ.
 
         /**
-         * @brief Обчислює SHA-256 контрольну суму для даних.
-         * @param data Дані для хешування.
-         * @return Контрольна сума у вигляді числа з плаваючою точкою.
+         * @brief РћР±С‡РёСЃР»СЋС” SHA-256 РєРѕРЅС‚СЂРѕР»СЊРЅСѓ СЃСѓРјСѓ РґР»СЏ РґР°РЅРёС….
+         * @param data Р”Р°РЅС– РґР»СЏ С…РµС€СѓРІР°РЅРЅСЏ.
+         * @return РљРѕРЅС‚СЂРѕР»СЊРЅР° СЃСѓРјР° Сѓ РІРёРіР»СЏРґС– С‡РёСЃР»Р° Р· РїР»Р°РІР°СЋС‡РѕСЋ С‚РѕС‡РєРѕСЋ.
          */
         static double calculate_sha256(const std::string& data);
 
         /**
-         * @brief Записує ключ і його контрольну суму у файл архіву.
-         * @param key Ключ для запису.
-         * @param checksum Контрольна сума для ключа.
+         * @brief Р—Р°РїРёСЃСѓС” РєР»СЋС‡ С– Р№РѕРіРѕ РєРѕРЅС‚СЂРѕР»СЊРЅСѓ СЃСѓРјСѓ Сѓ С„Р°Р№Р» Р°СЂС…С–РІСѓ.
+         * @param key РљР»СЋС‡ РґР»СЏ Р·Р°РїРёСЃСѓ.
+         * @param checksum РљРѕРЅС‚СЂРѕР»СЊРЅР° СЃСѓРјР° РґР»СЏ РєР»СЋС‡Р°.
          */
         void write_to_archive_file(int key, double checksum) const;
     };

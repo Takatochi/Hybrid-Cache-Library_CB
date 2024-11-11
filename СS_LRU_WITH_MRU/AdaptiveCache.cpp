@@ -1,4 +1,4 @@
-#include "AdaptiveCache.hpp"
+п»ї#include "AdaptiveCache.hpp"
 #include <openssl/sha.h>
 #include <fstream>
 #include <cmath>
@@ -6,39 +6,39 @@
 
 namespace CacheLibrary {
 
-// Реалізація методів класу AdaptiveCache
+// Р РµР°Р»С–Р·Р°С†С–СЏ РјРµС‚РѕРґС–РІ РєР»Р°СЃСѓ AdaptiveCache
 AdaptiveCache::AdaptiveCache() : dispersionLRU(0), dispersionMRU(0), lastAlgorithm("None") {}
 
 void AdaptiveCache::access(int key) {
-    // Ініціалізуємо або збільшуємо частоту доступу для ключа
+    // Р†РЅС–С†С–Р°Р»С–Р·СѓС”РјРѕ Р°Р±Рѕ Р·Р±С–Р»СЊС€СѓС”РјРѕ С‡Р°СЃС‚РѕС‚Сѓ РґРѕСЃС‚СѓРїСѓ РґР»СЏ РєР»СЋС‡Р°
     if (!accessFrequency.contains(key)) {
-        accessFrequency[key] = 1.0; // Початкова частота доступу
+        accessFrequency[key] = 1.0; // РџРѕС‡Р°С‚РєРѕРІР° С‡Р°СЃС‚РѕС‚Р° РґРѕСЃС‚СѓРїСѓ
     }
     else {
-        accessFrequency[key] += 1.0; // Збільшуємо частоту доступу для ключа
+        accessFrequency[key] += 1.0; // Р—Р±С–Р»СЊС€СѓС”РјРѕ С‡Р°СЃС‚РѕС‚Сѓ РґРѕСЃС‚СѓРїСѓ РґР»СЏ РєР»СЋС‡Р°
     }
 
-    // Додаємо відлагоджувальне повідомлення для перевірки частоти доступу
+    // Р”РѕРґР°С”РјРѕ РІС–РґР»Р°РіРѕРґР¶СѓРІР°Р»СЊРЅРµ РїРѕРІС–РґРѕРјР»РµРЅРЅСЏ РґР»СЏ РїРµСЂРµРІС–СЂРєРё С‡Р°СЃС‚РѕС‚Рё РґРѕСЃС‚СѓРїСѓ
     std::cout << "Access Frequency for key " << key << ": " << accessFrequency[key] << std::endl;
 
-    // Розрахунок дисперсій для LRU та MRU
+    // Р РѕР·СЂР°С…СѓРЅРѕРє РґРёСЃРїРµСЂСЃС–Р№ РґР»СЏ LRU С‚Р° MRU
     calculate_dispersions();
 
-    // Вибір алгоритму на основі дисперсії
+    // Р’РёР±С–СЂ Р°Р»РіРѕСЂРёС‚РјСѓ РЅР° РѕСЃРЅРѕРІС– РґРёСЃРїРµСЂСЃС–С—
     if (dispersionLRU < dispersionMRU) {
-        // Використовуємо LRU
+        // Р’РёРєРѕСЂРёСЃС‚РѕРІСѓС”РјРѕ LRU
         lruCache.insert(key, key);
         lastAlgorithm = "LRU";
         std::cout << "Key: " << key << " inserted using LRU algorithm." << std::endl;
     }
     else if (dispersionMRU <= dispersionLRU) {
-        // Використовуємо MRU
+        // Р’РёРєРѕСЂРёСЃС‚РѕРІСѓС”РјРѕ MRU
         mruCache.insert(key, key);
         lastAlgorithm = "MRU";
         std::cout << "Key: " << key << " inserted using MRU algorithm." << std::endl;
     }
 
-    // Архівування, якщо потрібно
+    // РђСЂС…С–РІСѓРІР°РЅРЅСЏ, СЏРєС‰Рѕ РїРѕС‚СЂС–Р±РЅРѕ
     archive(key);
 }
 
@@ -48,7 +48,7 @@ void AdaptiveCache::calculate_dispersions() {
     double meanLRU = 0, meanMRU = 0;
     int countLRU = 0, countMRU = 0;
 
-    // Обчислюємо середнє значення для LRU і MRU
+    // РћР±С‡РёСЃР»СЋС”РјРѕ СЃРµСЂРµРґРЅС” Р·РЅР°С‡РµРЅРЅСЏ РґР»СЏ LRU С– MRU
     for (const auto& entry : accessFrequency) {
         if (lruCache.contains(entry.first)) {
             meanLRU += entry.second;
@@ -63,10 +63,10 @@ void AdaptiveCache::calculate_dispersions() {
     if (countLRU > 0) meanLRU /= countLRU;
     if (countMRU > 0) meanMRU /= countMRU;
 
-    // Вивід середніх значень для перевірки
+    // Р’РёРІС–Рґ СЃРµСЂРµРґРЅС–С… Р·РЅР°С‡РµРЅСЊ РґР»СЏ РїРµСЂРµРІС–СЂРєРё
     std::cout << "Mean LRU: " << meanLRU << ", Mean MRU: " << meanMRU << std::endl;
 
-    // Обчислюємо дисперсію для LRU і MRU
+    // РћР±С‡РёСЃР»СЋС”РјРѕ РґРёСЃРїРµСЂСЃС–СЋ РґР»СЏ LRU С– MRU
     for (const auto& entry : accessFrequency) {
         if (lruCache.contains(entry.first)) {
             sumLRU += pow(entry.second - meanLRU, 2);
@@ -79,7 +79,7 @@ void AdaptiveCache::calculate_dispersions() {
     if (countLRU > 0) dispersionLRU = sumLRU / countLRU;
     if (countMRU > 0) dispersionMRU = sumMRU / countMRU;
 
-    // Виведення для перевірки обчислення дисперсій
+    // Р’РёРІРµРґРµРЅРЅСЏ РґР»СЏ РїРµСЂРµРІС–СЂРєРё РѕР±С‡РёСЃР»РµРЅРЅСЏ РґРёСЃРїРµСЂСЃС–Р№
     std::cout << "Dispersion LRU: " << dispersionLRU << ", Dispersion MRU: " << dispersionMRU << std::endl;
 }
 
@@ -126,7 +126,7 @@ void AdaptiveCache::display_cache_status() const {
         }
         else
         {
-            mruCache.display_status(); // Виводимо статус MRU кешу
+            mruCache.display_status(); // Р’РёРІРѕРґРёРјРѕ СЃС‚Р°С‚СѓСЃ MRU РєРµС€Сѓ
         }
     }
 
