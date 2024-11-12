@@ -76,7 +76,7 @@ The adaptive mechanism analyzes data access patterns and calculates dispersion t
 Clone the repository:
 
 ```bash
-git clone https://github.com/Takatochi/adaptive-cache-library.git
+git clone https://github.com/Takatochi/Hybrid-Cache-Library_CB.git
 ```
 Include the library in your project:
 - Copy the CacheLibrary folder into your project directory and include the necessary header files.
