@@ -97,7 +97,7 @@ To use the Adaptive Hybrid Cache Library, create instances of the cache implemen
 #include "LRU_Cache.hpp"
 #include "MRU_Cache.hpp"
 
-using namespace CacheLibrary;
+using namespace cache_library;
 
 int main() {
     // Create cache instances
@@ -188,7 +188,7 @@ The ICache interface defines the basic operations for cache implementations.
 #include "LRU_Cache.hpp"
 #include "MRU_Cache.hpp"
 
-using namespace CacheLibrary;
+using namespace cache_library;
 
 int main() {
     // Initialize caches and strategy
