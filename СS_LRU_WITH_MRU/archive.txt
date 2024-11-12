@@ -68,3 +68,14 @@ Key: 1, Checksum: 4245
 Key: 5, Checksum: 4033
 Key: 7, Checksum: 3374
 Key: 3, Checksum: 3968
+Key: 1, Checksum: 4245
+Key: 2, Checksum: 3651
+Key: 3, Checksum: 3968
+Key: 2, Checksum: 3651
+Key: 1, Checksum: 4245
+Key: 2, Checksum: 3651
+Key: 3, Checksum: 3968
+Key: 2, Checksum: 3651
+Key: 10, Checksum: 3457
+Key: 100, Checksum: 3943
+Key: 278, Checksum: 3999

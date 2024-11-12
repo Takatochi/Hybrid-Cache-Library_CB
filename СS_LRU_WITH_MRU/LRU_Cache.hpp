@@ -4,9 +4,11 @@
 #include <list>
 #include <unordered_map>
 #include <iostream>
+#include <vector>
 
-namespace CacheLibrary {
+namespace cache_library {
 
+    class AdaptiveCache; // Попереднє оголошення
     /**
      * @class LRU_Cache
      * @brief Реалізація кешу з алгоритмом LRU (Least Recently Used).
@@ -16,9 +18,9 @@ namespace CacheLibrary {
         /**
          * @brief Вставка ключа у кеш з видаленням найстарішого при переповненні.
          * @param key Ключ для збереження в кеші.
-         * @param value Значення, яке буде прив'язано до ключа (не використовується тут).
+         * @param value Значення, яке буде прив'язано до ключа.
          */
-        void insert(int key, int value);
+        void insert(int key, int value, AdaptiveCache* parent_cache);
 
         /**
          * @brief Отримання значення за ключем з оновленням його у кеші.
@@ -35,9 +37,21 @@ namespace CacheLibrary {
         [[nodiscard]] bool contains(int key) const;
 
         /**
+         * @brief Видалення ключа з кешу.
+         * @param key Ключ для видалення.
+         */
+        void remove(int key);
+
+        /**
          * @brief Виводить поточний статус кешу.
          */
         void display_status() const;
+
+        /**
+         * @brief Отримує всі ключі в кеші.
+         * @return Вектор ключів.
+         */
+        std::vector<int> get_keys() const;
 
     private:
         std::list<int> cache_keys_; ///< Список ключів у кеші.
