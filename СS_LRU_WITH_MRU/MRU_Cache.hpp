@@ -12,9 +12,16 @@ namespace cache_library {
     /**
      * @class MRU_Cache
      * @brief Реалізація кешу з алгоритмом MRU (Most Recently Used).
+     * @en Implementation of cache with MRU (Most Recently Used) algorithm.
      */
     class MRU_Cache : public ICache {
     public:
+        /**
+		 * @brief Конструктор для ініціалізації кешу з заданою місткістю.
+		 * @en Constructor to initialize the cache with a given capacity.
+		 * @param capacity Місткість кешу.
+		 * @en Cache capacity.
+		 */
         MRU_Cache(int capacity = 10);
 
         void insert(int key, int value) override;
