@@ -234,7 +234,7 @@ int main() {
 }
 ````
 
-##Contributing
+## Contributing
 Contributions are welcome! Please follow these steps:
 1. Fork the repository.
 2. Create a new branch: git checkout -b feature/your-feature.
@@ -242,5 +242,5 @@ Contributions are welcome! Please follow these steps:
 4. Push to the branch: git push origin feature/your-feature.
 5. Open a pull request.
    
-##License
+## License
 This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
