@@ -136,6 +136,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AdaptiveCache.hpp" />
+    <ClInclude Include="ICache.hpp" />
     <ClInclude Include="LRU_Cache.hpp" />
     <ClInclude Include="MRU_Cache.hpp" />
   </ItemGroup>

@@ -1,16 +1,15 @@
 ﻿#include "LRU_Cache.hpp"
 
-#include "AdaptiveCache.hpp"
-
 namespace cache_library {
 
-    void LRU_Cache::insert(const int key, int value, AdaptiveCache* parent_cache) {
+    LRU_Cache::LRU_Cache(const int capacity) : capacity_(capacity) {}
+
+    void LRU_Cache::insert(const int key, int value) {
         if (!key_map_.contains(key)) {
             if (cache_keys_.size() >= capacity_) {
                 const int last_key = cache_keys_.back();
                 cache_keys_.pop_back();
                 key_map_.erase(last_key);
-                parent_cache->on_evict(last_key);
             }
         }
         else {
@@ -50,11 +49,7 @@ namespace cache_library {
     }
 
     std::vector<int> LRU_Cache::get_keys() const {
-        std::vector<int> keys;
-        for (const int key : cache_keys_) {
-            keys.push_back(key);
-        }
-        return keys;
+        return { cache_keys_.begin(), cache_keys_.end() };
     }
 
 } // namespace CacheLibrary

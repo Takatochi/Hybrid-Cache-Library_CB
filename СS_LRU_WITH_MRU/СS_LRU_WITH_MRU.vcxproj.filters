@@ -41,5 +41,8 @@
     <ClInclude Include="AdaptiveCache.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ICache.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

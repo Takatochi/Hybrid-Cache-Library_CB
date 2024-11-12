@@ -1,8 +1,18 @@
 ﻿#include "AdaptiveCache.hpp"
+#include "LRU_Cache.hpp"
+#include "MRU_Cache.hpp"
 
 int main() {
-    cache_library::AdaptiveCache cache;
 
+    using namespace cache_library;
+
+    // Створення кешів
+    std::shared_ptr<ICache> lruCache = std::make_shared<LRU_Cache>(10);
+    std::shared_ptr<ICache> mruCache = std::make_shared<MRU_Cache>(10);
+
+    // Також можна розширити використання інших алгоритмів
+    // Створення адаптивного кешу
+    adaptive_cache cache(lruCache, mruCache);
 
 
     for (int i = 0; i < 100; ++i) {

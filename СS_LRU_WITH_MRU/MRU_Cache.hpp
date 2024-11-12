@@ -1,6 +1,7 @@
 ﻿#ifndef MRU_CACHE_HPP
 #define MRU_CACHE_HPP
 
+#include "ICache.hpp"
 #include <list>
 #include <unordered_map>
 #include <iostream>
@@ -8,55 +9,25 @@
 
 namespace cache_library {
 
-    class AdaptiveCache; // Попереднє оголошення
     /**
      * @class MRU_Cache
      * @brief Реалізація кешу з алгоритмом MRU (Most Recently Used).
      */
-    class MRU_Cache {
+    class MRU_Cache : public ICache {
     public:
-        /**
-         * @brief Вставка ключа у кеш з видаленням найновішого при переповненні.
-         * @param key Ключ для збереження в кеші.
-         * @param value Значення, яке буде прив'язано до ключа.
-         */
-        void insert(int key, int value, AdaptiveCache* parent_cache);
+        MRU_Cache(int capacity = 10);
 
-        /**
-         * @brief Отримання значення за ключем з оновленням його у кеші.
-         * @param key Ключ, який потрібно отримати.
-         * @return Значення ключа або -1, якщо ключа немає в кеші.
-         */
-        int get(int key);
-
-        /**
-         * @brief Перевірка, чи є ключ у кеші.
-         * @param key Ключ для перевірки.
-         * @return true, якщо ключ є в кеші, інакше false.
-         */
-        [[nodiscard]] bool contains(int key) const;
-
-        /**
-         * @brief Видалення ключа з кешу.
-         * @param key Ключ для видалення.
-         */
-        void remove(int key);
-
-        /**
-         * @brief Виводить поточний статус кешу.
-         */
-        void display_status() const;
-
-        /**
-         * @brief Отримує всі ключі в кеші.
-         * @return Вектор ключів.
-         */
-        std::vector<int> get_keys() const;
+        void insert(int key, int value) override;
+        int get(int key) override;
+        bool contains(int key) const override;
+        void remove(int key) override;
+        void display_status() const override;
+        std::vector<int> get_keys() const override;
 
     private:
-        std::list<int> cache_keys_; ///< Список ключів у кеші.
-        std::unordered_map<int, std::list<int>::iterator> key_map_; ///< Відображення ключів на їхні позиції в списку.
-        int capacity_ = 10; ///< Максимальна кількість елементів у кеші.
+        std::list<int> cache_keys_;
+        std::unordered_map<int, std::list<int>::iterator> key_map_;
+        int capacity_;
     };
 
 } // namespace CacheLibrary
