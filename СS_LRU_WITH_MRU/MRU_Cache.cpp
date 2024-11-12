@@ -5,10 +5,10 @@ namespace CacheLibrary {
     void MRU_Cache::insert(const int key, int value) {
         if (!keyMap.contains(key)) {
             if (cacheKeys.size() >= capacity) {
-	            const int firstKey = cacheKeys.front();
+	            const int first_key = cacheKeys.front();
                 cacheKeys.pop_front();
-                keyMap.erase(firstKey);
-                std::cout << "MRU: Delete the most recent key: " << firstKey << std::endl;
+                keyMap.erase(first_key);
+                std::cout << "MRU: Delete the most recent key: " << first_key << '\n';
             }
         }
         else {
@@ -16,7 +16,7 @@ namespace CacheLibrary {
         }
         cacheKeys.push_back(key);
         keyMap[key] = --cacheKeys.end();
-        std::cout << "MRU: Adding a key: " << key << " to the MRU cache." << std::endl;
+        std::cout << "MRU: Adding a key: " << key << " to the MRU cache." << '\n';
     }
 
     int MRU_Cache::get(const int key) {
@@ -36,7 +36,7 @@ namespace CacheLibrary {
         for (const int key : cacheKeys) {
             std::cout << "Key: " << key << " ";
         }
-        std::cout << std::endl;
+        std::cout << '\n';
     }
 
 } // namespace CacheLibrary

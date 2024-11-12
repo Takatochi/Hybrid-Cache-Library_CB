@@ -19,7 +19,7 @@ void AdaptiveCache::access(int key) {
     }
 
     // Додаємо відлагоджувальне повідомлення для перевірки частоти доступу
-    std::cout << "Access Frequency for key " << key << ": " << accessFrequency[key] << std::endl;
+    std::cout << "Access Frequency for key " << key << ": " << accessFrequency[key] << '\n';
 
     // Розрахунок дисперсій для LRU та MRU
     calculate_dispersions();
@@ -29,13 +29,13 @@ void AdaptiveCache::access(int key) {
         // Використовуємо LRU
         lruCache.insert(key, key);
         lastAlgorithm = "LRU";
-        std::cout << "Key: " << key << " inserted using LRU algorithm." << std::endl;
+        std::cout << "Key: " << key << " inserted using LRU algorithm." << '\n';
     }
     else if (dispersionMRU <= dispersionLRU) {
         // Використовуємо MRU
         mruCache.insert(key, key);
         lastAlgorithm = "MRU";
-        std::cout << "Key: " << key << " inserted using MRU algorithm." << std::endl;
+        std::cout << "Key: " << key << " inserted using MRU algorithm." << '\n';
     }
 
     // Архівування, якщо потрібно
@@ -44,43 +44,43 @@ void AdaptiveCache::access(int key) {
 
 
 void AdaptiveCache::calculate_dispersions() {
-    double sumLRU = 0, sumMRU = 0;
-    double meanLRU = 0, meanMRU = 0;
-    int countLRU = 0, countMRU = 0;
+    double sum_lru = 0, sum_mru = 0;
+    double mean_lru = 0, mean_mru = 0;
+    int count_lru = 0, count_mru = 0;
 
     // Обчислюємо середнє значення для LRU і MRU
-    for (const auto& entry : accessFrequency) {
-        if (lruCache.contains(entry.first)) {
-            meanLRU += entry.second;
-            countLRU++;
+    for (const auto& [fst, snd] : accessFrequency) {
+        if (lruCache.contains(fst)) {
+            mean_lru += snd;
+            count_lru++;
         }
-        else if (mruCache.contains(entry.first)) {
-            meanMRU += entry.second;
-            countMRU++;
+        else if (mruCache.contains(fst)) {
+            mean_mru += snd;
+            count_mru++;
         }
     }
 
-    if (countLRU > 0) meanLRU /= countLRU;
-    if (countMRU > 0) meanMRU /= countMRU;
+    if (count_lru > 0) mean_lru /= count_lru;
+    if (count_mru > 0) mean_mru /= count_mru;
 
     // Вивід середніх значень для перевірки
-    std::cout << "Mean LRU: " << meanLRU << ", Mean MRU: " << meanMRU << std::endl;
+    std::cout << "Mean LRU: " << mean_lru << ", Mean MRU: " << mean_mru << '\n';
 
     // Обчислюємо дисперсію для LRU і MRU
     for (const auto& entry : accessFrequency) {
         if (lruCache.contains(entry.first)) {
-            sumLRU += pow(entry.second - meanLRU, 2);
+            sum_lru += pow(entry.second - mean_lru, 2);
         }
         else if (mruCache.contains(entry.first)) {
-            sumMRU += pow(entry.second - meanMRU, 2);
+            sum_mru += pow(entry.second - mean_mru, 2);
         }
     }
 
-    if (countLRU > 0) dispersionLRU = sumLRU / countLRU;
-    if (countMRU > 0) dispersionMRU = sumMRU / countMRU;
+    if (count_lru > 0) dispersionLRU = sum_lru / count_lru;
+    if (count_mru > 0) dispersionMRU = sum_mru / count_mru;
 
     // Виведення для перевірки обчислення дисперсій
-    std::cout << "Dispersion LRU: " << dispersionLRU << ", Dispersion MRU: " << dispersionMRU << std::endl;
+    std::cout << "Dispersion LRU: " << dispersionLRU << ", Dispersion MRU: " << dispersionMRU << '\n';
 }
 
 
@@ -89,7 +89,7 @@ void AdaptiveCache::archive(const int key) {
     if (accessFrequency[key] < 1) {
         double checksum = calculate_sha256(std::to_string(key));
         write_to_archive_file(key, checksum);
-        std::cout << "Archived key: " << key << " with checksum: " << checksum << std::endl;
+        std::cout << "Archived key: " << key << " with checksum: " << checksum << '\n';
     }
 }
 
@@ -99,7 +99,7 @@ double AdaptiveCache::calculate_sha256(const std::string& data) {
     std::string hashStr(hash, hash + SHA256_DIGEST_LENGTH);
 
     double checksum = 0;
-    for (char ch : hashStr) {
+    for (const char ch : hashStr) {
         checksum += static_cast<unsigned char>(ch);
     }
     return checksum;
@@ -107,21 +107,20 @@ double AdaptiveCache::calculate_sha256(const std::string& data) {
 
 void AdaptiveCache::write_to_archive_file(const int key, const double checksum) const
 {
-    std::ofstream archiveFile(archiveFilePath, std::ios::app);
-    if (archiveFile.is_open()) {
-        archiveFile << "Key: " << key << ", Checksum: " << checksum << "\n";
-        archiveFile.close();
+	if (std::ofstream archive_file(archiveFilePath, std::ios::app); archive_file.is_open()) {
+        archive_file << "Key: " << key << ", Checksum: " << checksum << "\n";
+        archive_file.close();
     }
     else {
-        std::cerr << "Unable to open archive file!" << std::endl;
+        std::cerr << "Unable to open archive file!" << '\n';
     }
 }
 
 void AdaptiveCache::display_cache_status() const {
     std::cout << "Cache Status:\n";
 
-    for (const auto& entry : accessFrequency) {
-        if (lruCache.contains(entry.first)) {
+    for (const auto& [fst, snd] : accessFrequency) {
+        if (lruCache.contains(fst)) {
             lruCache.display_status();
         }
         else

@@ -40,9 +40,9 @@ namespace CacheLibrary {
         void display_status() const;
 
     private:
-        std::list<int> cacheKeys; ///< Список ключів у кеші.
-        std::unordered_map<int, std::list<int>::iterator> keyMap; ///< Відображення ключів на їхні позиції в списку.
-        int capacity = 10; ///< Максимальна кількість елементів у кеші.
+        std::list<int> cache_keys_; ///< Список ключів у кеші.
+        std::unordered_map<int, std::list<int>::iterator> key_map_; ///< Відображення ключів на їхні позиції в списку.
+        int capacity_ = 10; ///< Максимальна кількість елементів у кеші.
     };
 
 } // namespace CacheLibrary
