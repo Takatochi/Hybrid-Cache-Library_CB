@@ -1,6 +1,6 @@
-# Adaptive Cache Library
+# Adaptive Hybrid Cache Library
 
-An adaptive caching library in C++ that dynamically switches between LRU (Least Recently Used) and MRU (Most Recently Used) caching algorithms based on access patterns. It includes an archiving mechanism to store infrequently accessed data, ensuring efficient memory usage and optimal performance.
+An adaptive hybrid caching library in C++ that combines LRU (Least Recently Used) and MRU (Most Recently Used) caching algorithms with an archiving mechanism. The library dynamically switches between LRU and MRU based on access patterns and variance (dispersion) of data access, optimizing cache performance and memory usage.
 
 ---
 
