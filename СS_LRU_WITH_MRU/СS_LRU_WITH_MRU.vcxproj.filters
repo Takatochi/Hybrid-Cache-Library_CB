@@ -30,6 +30,9 @@
     <ClCompile Include="AdaptiveCache.cpp">
       <Filter>Source Files\cache_library</Filter>
     </ClCompile>
+    <ClCompile Include="ICacheStrategy.cpp">
+      <Filter>Source Files\cache_library</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MRU_Cache.hpp">
@@ -42,6 +45,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ICache.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ICacheStrategy.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
