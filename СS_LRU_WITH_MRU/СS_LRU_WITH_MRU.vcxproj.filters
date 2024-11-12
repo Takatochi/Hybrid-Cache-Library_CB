@@ -18,7 +18,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="СS_LRU_WITH_MRU.cpp">
+    <ClCompile Include="main_example_using.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="LRU_Cache.cpp">
@@ -30,7 +30,7 @@
     <ClCompile Include="AdaptiveCache.cpp">
       <Filter>Source Files\cache_library</Filter>
     </ClCompile>
-    <ClCompile Include="ICacheStrategy.cpp">
+    <ClCompile Include="ConcreteCacheStrategy.cpp">
       <Filter>Source Files\cache_library</Filter>
     </ClCompile>
   </ItemGroup>
@@ -48,6 +48,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ICacheStrategy.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ConcreteCacheStrategy.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
