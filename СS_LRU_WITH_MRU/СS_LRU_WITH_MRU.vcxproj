@@ -130,13 +130,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AdaptiveCache.cpp" />
-    <ClCompile Include="ICacheStrategy.cpp" />
+    <ClCompile Include="ConcreteCacheStrategy.cpp" />
     <ClCompile Include="LRU_Cache.cpp" />
     <ClCompile Include="MRU_Cache.cpp" />
-    <ClCompile Include="СS_LRU_WITH_MRU.cpp" />
+    <ClCompile Include="main_example_using.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AdaptiveCache.hpp" />
+    <ClInclude Include="ConcreteCacheStrategy.hpp" />
     <ClInclude Include="ICache.hpp" />
     <ClInclude Include="ICacheStrategy.hpp" />
     <ClInclude Include="LRU_Cache.hpp" />
