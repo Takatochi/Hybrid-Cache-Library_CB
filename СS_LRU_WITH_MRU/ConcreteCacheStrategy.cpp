@@ -10,8 +10,6 @@ namespace cache_library {
     std::shared_ptr<ICache> concrete_cache_strategy::select_cache(int key) {
         // Вибираємо кеш на основі дисперсії
 
-        std::cout << "select_cache - Dispersion LRU: " << dispersionLRU_ << ", Dispersion MRU: " << dispersionMRU_ << std::endl;
-
         if (dispersionLRU_ < dispersionMRU_) {
             return lru_cache_;
             

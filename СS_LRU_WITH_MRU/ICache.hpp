@@ -1,6 +1,7 @@
 ﻿#ifndef ICACHE_HPP
 #define ICACHE_HPP
 
+#include <string>
 #include <vector>
 
 namespace cache_library {
@@ -65,6 +66,12 @@ namespace cache_library {
          * @en Vector of keys.
          */
         virtual std::vector<int> get_keys() const = 0;
+
+        /**
+		 * @brief Отримання назви стратегії кешування.
+		 * @return Назва стратегії.
+		 */
+        virtual std::string getStrategyName() const = 0;
     };
 
 

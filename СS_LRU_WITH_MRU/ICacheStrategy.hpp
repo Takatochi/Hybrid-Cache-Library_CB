@@ -3,6 +3,7 @@
 
 #include "ICache.hpp"
 #include <memory>
+#include <string>
 
 namespace cache_library {
 
@@ -38,6 +39,7 @@ namespace cache_library {
          * @return Указівник на MRU кеш.
          */
         virtual std::shared_ptr<ICache> mruCache() const = 0;
+
 
     };
 

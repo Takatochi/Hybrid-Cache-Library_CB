@@ -16,7 +16,7 @@ int main() {
    // При створенні adaptive_cache
     auto strategy = std::make_shared<concrete_cache_strategy>(lruCache, mruCache);
     adaptive_cache cache(strategy);
-    ;
+
 
  
 
@@ -25,9 +25,6 @@ int main() {
     cache.insert(2, 200);
     cache.insert(3, 300);
 
-    for (int i = 0; i < 100; ++i) {
-        int value = cache.get(2);
-    }
     // Access data
     int value = cache.get(2);
     std::cout << "Value for key 2: " << value << '\n';

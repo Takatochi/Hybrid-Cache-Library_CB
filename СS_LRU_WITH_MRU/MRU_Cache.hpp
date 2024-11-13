@@ -30,10 +30,12 @@ namespace cache_library {
         void remove(int key) override;
         void display_status() const override;
         std::vector<int> get_keys() const override;
+        std::string getStrategyName() const override;
 
     private:
         std::list<int> cache_keys_;
         std::unordered_map<int, std::list<int>::iterator> key_map_;
+        std::unordered_map<int, int> value_map_; ///< Відображення ключів на значення.
         int capacity_;
     };
 
