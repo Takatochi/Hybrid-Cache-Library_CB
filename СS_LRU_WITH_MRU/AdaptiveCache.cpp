@@ -9,10 +9,10 @@
 int i = 1;
 namespace cache_library {
 
-    adaptive_cache::adaptive_cache(std::shared_ptr<ICacheStrategy> strategy)
+    adaptive_cache::adaptive_cache(std::shared_ptr<i_cache_strategy> strategy)
         : cacheStrategy(std::move(strategy)) {}
 
-    adaptive_cache::adaptive_cache(const std::shared_ptr<ICache>& lru_cache_ptr, const std::shared_ptr<ICache>&
+    adaptive_cache::adaptive_cache(const std::shared_ptr<i_cache>& lru_cache_ptr, const std::shared_ptr<i_cache>&
                                    mru_cache_ptr) {
         // Створюємо стратегію за замовчуванням
         cacheStrategy = std::make_shared<concrete_cache_strategy>(lru_cache_ptr, mru_cache_ptr);

@@ -13,20 +13,20 @@ namespace cache_library {
      * @class concrete_cache_strategy
      * @brief Реалізація стратегії вибору кешу.
      */
-    class concrete_cache_strategy : public ICacheStrategy {
+    class concrete_cache_strategy : public i_cache_strategy {
     public:
-        concrete_cache_strategy(std::shared_ptr<ICache> lru_cache, std::shared_ptr<ICache> mru_cache);
+        concrete_cache_strategy(std::shared_ptr<i_cache> lru_cache, std::shared_ptr<i_cache> mru_cache);
 
-        std::shared_ptr<ICache> select_cache(int key) override;
+        std::shared_ptr<i_cache> select_cache(int key) override;
         void update_strategy(int key) override;
 
         // Реалізуємо методи доступу до кешів
-        std::shared_ptr<ICache> lruCache() const override;
-        std::shared_ptr<ICache> mruCache() const override;
+        std::shared_ptr<i_cache> lruCache() const override;
+        std::shared_ptr<i_cache> mruCache() const override;
 
     private:
-        std::shared_ptr<ICache> lru_cache_;
-        std::shared_ptr<ICache> mru_cache_;
+        std::shared_ptr<i_cache> lru_cache_;
+        std::shared_ptr<i_cache> mru_cache_;
 
         // Data structures for tracking access frequencies and times
         std::unordered_map<int, double> accessFrequency_;

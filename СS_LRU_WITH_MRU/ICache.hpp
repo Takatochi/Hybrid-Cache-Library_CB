@@ -7,13 +7,13 @@
 namespace cache_library {
 
     /**
- * @class ICache
+ * @class i_cache
  * @brief Абстрактний інтерфейс для кешів.
  * @en Abstract interface for caches.
  */
-    class ICache {
+    class i_cache {
     public:
-        virtual ~ICache() = default;
+        virtual ~i_cache() = default;
 
         /**
          * @brief Вставка ключа у кеш.
@@ -65,13 +65,13 @@ namespace cache_library {
          * @return Вектор ключів.
          * @en Vector of keys.
          */
-        virtual std::vector<int> get_keys() const = 0;
+        [[nodiscard]] virtual std::vector<int> get_keys() const = 0;
 
         /**
 		 * @brief Отримання назви стратегії кешування.
 		 * @return Назва стратегії.
 		 */
-        virtual std::string getStrategyName() const = 0;
+        [[nodiscard]] virtual std::string get_strategy_name() const = 0;
     };
 
 

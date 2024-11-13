@@ -6,8 +6,8 @@
 int main() {
     using namespace cache_library;
     // Initialize caches and strategy
-    auto lruCache = std::make_shared<LRU_Cache>(5);
-    auto mruCache = std::make_shared<MRU_Cache>(5);
+    auto lruCache = std::make_shared<lru_cache>(5);
+    auto mruCache = std::make_shared<mru_cache>(5);
 
     // TODO Add abstraction 
     //auto strategy = std::make_shared<ConcreteCacheStrategy>(lruCache, mruCache);

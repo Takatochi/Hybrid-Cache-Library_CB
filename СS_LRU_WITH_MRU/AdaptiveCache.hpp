@@ -22,14 +22,14 @@ namespace cache_library {
          * @brief Конструктор з передачею стратегії кешування.
          * @param strategy Указівник на стратегію вибору кешу.
          */
-        explicit adaptive_cache(std::shared_ptr<ICacheStrategy> strategy);
+        explicit adaptive_cache(std::shared_ptr<i_cache_strategy> strategy);
 
         /**
          * @brief Конструктор з передачею кешів LRU та MRU.
          * @param lru_cache_ptr Указівник на LRU кеш.
          * @param mru_cache_ptr Указівник на MRU кеш.
          */
-        adaptive_cache(const std::shared_ptr<ICache>& lru_cache_ptr, const std::shared_ptr<ICache>& mru_cache_ptr);
+        adaptive_cache(const std::shared_ptr<i_cache>& lru_cache_ptr, const std::shared_ptr<i_cache>& mru_cache_ptr);
 
         void insert(int key, int value) const;
         int get(int key) const;
@@ -38,7 +38,7 @@ namespace cache_library {
         void display_cache_status() const;
 
     private:
-        std::shared_ptr<ICacheStrategy> cacheStrategy; ///< Указівник на стратегію кешування.
+        std::shared_ptr<i_cache_strategy> cacheStrategy; ///< Указівник на стратегію кешування.
         const std::string archiveFilePath_ = "archive.txt"; ///< Шлях до файлу архіву.
         std::string last_algorithm_; ///< Останній використаний алгоритм кешування.
         static double calculate_sha256(const std::string& data);

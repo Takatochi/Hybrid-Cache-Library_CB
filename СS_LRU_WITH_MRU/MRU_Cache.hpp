@@ -10,11 +10,11 @@
 namespace cache_library {
 
     /**
-     * @class MRU_Cache
+     * @class mru_cache
      * @brief Реалізація кешу з алгоритмом MRU (Most Recently Used).
      * @en Implementation of cache with MRU (Most Recently Used) algorithm.
      */
-    class MRU_Cache : public ICache {
+    class mru_cache final : public i_cache {
     public:
         /**
 		 * @brief Конструктор для ініціалізації кешу з заданою місткістю.
@@ -22,15 +22,15 @@ namespace cache_library {
 		 * @param capacity Місткість кешу.
 		 * @en Cache capacity.
 		 */
-        MRU_Cache(int capacity = 10);
+        explicit mru_cache(int capacity = 10);
 
         void insert(int key, int value) override;
         int get(int key) override;
-        bool contains(int key) const override;
+        [[nodiscard]] bool contains(int key) const override;
         void remove(int key) override;
         void display_status() const override;
-        std::vector<int> get_keys() const override;
-        std::string getStrategyName() const override;
+        [[nodiscard]] std::vector<int> get_keys() const override;
+        [[nodiscard]] std::string get_strategy_name() const override;
 
     private:
         std::list<int> cache_keys_;

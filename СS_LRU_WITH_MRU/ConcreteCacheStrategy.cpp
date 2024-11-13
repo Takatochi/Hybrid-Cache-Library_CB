@@ -4,10 +4,10 @@
 
 namespace cache_library {
 
-    concrete_cache_strategy::concrete_cache_strategy(std::shared_ptr<ICache> lru_cache, std::shared_ptr<ICache> mru_cache)
+    concrete_cache_strategy::concrete_cache_strategy(std::shared_ptr<i_cache> lru_cache, std::shared_ptr<i_cache> mru_cache)
         : lru_cache_(std::move(lru_cache)), mru_cache_(std::move(mru_cache)), dispersionLRU_(0.0), dispersionMRU_(0.0){}
 
-    std::shared_ptr<ICache> concrete_cache_strategy::select_cache(int key) {
+    std::shared_ptr<i_cache> concrete_cache_strategy::select_cache(int key) {
         // Вибираємо кеш на основі дисперсії
 
         if (dispersionLRU_ < dispersionMRU_) {
@@ -82,11 +82,11 @@ namespace cache_library {
     }
 
     // Реалізація методів доступу до кешів
-    std::shared_ptr<ICache> concrete_cache_strategy::lruCache() const {
+    std::shared_ptr<i_cache> concrete_cache_strategy::lruCache() const {
         return lru_cache_;
     }
 
-    std::shared_ptr<ICache> concrete_cache_strategy::mruCache() const {
+    std::shared_ptr<i_cache> concrete_cache_strategy::mruCache() const {
         return mru_cache_;
     }
 

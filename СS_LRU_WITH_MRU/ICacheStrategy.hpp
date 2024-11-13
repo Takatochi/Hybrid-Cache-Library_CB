@@ -8,19 +8,19 @@
 namespace cache_library {
 
     /**
-     * @class ICacheStrategy
+     * @class i_cache_strategy
      * @brief Інтерфейс для стратегій вибору кешу.
      */
-    class ICacheStrategy {
+    class i_cache_strategy {
     public:
-        virtual ~ICacheStrategy() = default;
+        virtual ~i_cache_strategy() = default;
 
         /**
          * @brief Вибирає відповідний кеш для даного ключа.
          * @param key Ключ для вставки.
          * @return Указівник на обраний кеш.
          */
-        virtual std::shared_ptr<ICache> select_cache(int key) = 0;
+        virtual std::shared_ptr<i_cache> select_cache(int key) = 0;
 
         /**
          * @brief Оновлює стратегію на основі доступу до ключа.
@@ -32,13 +32,13 @@ namespace cache_library {
          * @brief Отримує указівник на LRU кеш.
          * @return Указівник на LRU кеш.
          */
-        virtual std::shared_ptr<ICache> lruCache() const = 0;
+        virtual std::shared_ptr<i_cache> lruCache() const = 0;
 
         /**
          * @brief Отримує указівник на MRU кеш.
          * @return Указівник на MRU кеш.
          */
-        virtual std::shared_ptr<ICache> mruCache() const = 0;
+        virtual std::shared_ptr<i_cache> mruCache() const = 0;
 
 
     };
